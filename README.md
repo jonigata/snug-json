@@ -13,13 +13,13 @@ snugJSON is a lightweight NPM library that intelligently truncates JSON data, ma
 ## Installation
 
 ```bash
-npm install snugjson
+npm install snug-json
 ```
 
 ## Usage
 
 ```javascript
-import { snugJSON } from 'snugjson';
+import { snugJSON } from 'snug-json';
 
 const complexData = {
   longString: 'a'.repeat(1000),

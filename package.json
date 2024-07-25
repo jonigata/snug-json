@@ -1,6 +1,6 @@
 {
   "name": "snug-json",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A lightweight library for intelligently truncating JSON data, making it more readable and manageable for humans.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

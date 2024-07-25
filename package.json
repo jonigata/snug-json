@@ -1,7 +1,7 @@
 {
   "name": "snug-json",
   "version": "0.0.1",
-  "description": "",
+  "description": "A lightweight library for intelligently truncating JSON data, making it more readable and manageable for humans.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,11 +24,21 @@
     "example": "npm run build && node dist/examples/sample.js",
     "vitest": "vitest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "json",
+    "truncate",
+    "stringify",
+    "pretty-print",
+    "debugging"
+  ],
+  "author": "Naoyuki Hirayama <naoyuki.hirayama@gmail.com>",
   "license": "ISC",
-  "dependencies": {
-  },
   "devDependencies": {
+    "@types/node": "^20.14.12",
+    "path": "^0.12.7",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4",
+    "vite-plugin-dts": "^4.0.0-beta.1",
+    "vitest": "^2.0.4"
   }
 }

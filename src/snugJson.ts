@@ -170,21 +170,21 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string {
   };
 
   // メイン処理
-  console.log("Debug: Input", obj);
+  // console.log("Debug: Input", obj);
   let result = processAndCheck(obj);
   if (result) return result;
 
-  console.log("Debug: before Truncate Strings");
+  // console.log("Debug: before Truncate Strings");
   obj = truncateStrings(obj);
   result = processAndCheck(obj);
   if (result) return result;
 
-  console.log("Debug: before Truncate Arrays");
+  // console.log("Debug: before Truncate Arrays");
   obj = truncateArrays(obj);
   result = processAndCheck(obj);
   if (result) return result;
 
-  console.log("Debug: Undepth");
+  // console.log("Debug: Undepth");
   let depth = getMaxDepth(obj);
   while (depth > 0) {
     obj = truncateDepth(obj, depth);

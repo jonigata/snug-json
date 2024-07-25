@@ -7,19 +7,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'typai',
+      name: 'snug-json',
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format}.js`
-    },
-    rollupOptions: {
-      external: ['openai', 'io-ts', 'json5'],
-      output: {
-        globals: {
-          openai: 'OpenAI',
-          'io-ts': 't',
-          json5: 'json5'
-        }
-      }
     }
   },
   plugins: [

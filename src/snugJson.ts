@@ -1,8 +1,8 @@
-interface TruncateOptions {
+export interface TruncateOptions {
   maxLength?: number;
   maxStringLength?: number;
   maxArrayLength?: number;
-  space?: string | number;
+  indent?: string | number;
   oneLineLength?: number;
   replacer?: (key: string, value: any) => any;
 }
@@ -58,7 +58,7 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string | undefin
   options.oneLineLength = Math.min(options.oneLineLength, options.maxLength);
   // console.log("Debug: Options", options);
 
-  const { maxLength, maxStringLength, maxArrayLength, space, oneLineLength, replacer } = options;
+  const { maxLength, maxStringLength, maxArrayLength, indent, oneLineLength, replacer } = options;
 
   const customReplacer = (key: string, value: any) => {
     if (value instanceof Ellipsis) {
@@ -79,7 +79,7 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string | undefin
     return value;
   };
 
-  const stringify = (value: any) => JSON.stringify(value, customReplacer, space);
+  const stringify = (value: any) => JSON.stringify(value, customReplacer, indent);
 
   // 後処理関数
   const postProcess = (jsonString: string): string | undefined => {

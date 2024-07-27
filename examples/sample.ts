@@ -6,6 +6,6 @@ const complexData = {
   longArray: Array(1000).fill(1)
 };
 
-console.log(snugJSON(complexData, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, space: 2 ,oneLineLength: 0 }));
+console.log(snugJSON(complexData, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, indent: 2 ,oneLineLength: 0 }));
 
 

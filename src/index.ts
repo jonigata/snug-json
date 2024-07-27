@@ -1,3 +1,3 @@
-import { snugJSON } from "./snugJson";
+import { snugJSON, TruncateOptions } from "./snugJson";
 
-export { snugJSON };
+export { snugJSON, TruncateOptions };

@@ -99,7 +99,7 @@ describe('smugJSON', () => {
 
   it('should respect oneLineLength option', () => {
     const input = { a: 1, b: 2, c: 3, d: 4, e: 5 };
-    const result = snugJSON(input, { oneLineLength: 30, space: 2 });
+    const result = snugJSON(input, { oneLineLength: 30, indent: 2 });
     expect(result).toContain('\n');
   });
 
@@ -146,7 +146,7 @@ describe('smugJSON', () => {
       deepObject: { a: { b: { c: { d: 1 } } } },
       longArray: Array(1000).fill(1)
     };
-    const result = snugJSON(input, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, space: 2 ,oneLineLength: 0 })
+    const result = snugJSON(input, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, indent: 2 ,oneLineLength: 0 })
     expect(result).toBe(`{
   "longString": "aaaaaaaaaa...",
   "deepObject": {"a":?},

@@ -27,7 +27,7 @@ const complexData = {
   longArray: Array(1000).fill(1)
 };
 
-console.log(snugJSON(complexData, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, space: 2 ,oneLineLength: 0 }));
+console.log(snugJSON(complexData, { maxLength: 100, maxStringLength: 10, maxArrayLength: 5, indent: 2 ,oneLineLength: 0 }));
 ```
 
 Output:
@@ -48,7 +48,7 @@ Output:
   - `maxLength` (number): Maximum length of the resulting JSON string. Default: Infinity.
   - `maxStringLength` (number): Maximum length for individual string values. Default: Infinity.
   - `maxArrayLength` (number): Maximum number of array elements to include. Default: Infinity.
-  - `space` (string | number): Indentation for pretty-printing. Default: undefined (no pretty-printing).
+  - `indent` (number): Indentation for pretty-printing. Default: undefined (no pretty-printing).
   - `oneLineLength` (number): Maximum length for single-line output. Default: 80.
   - `replacer` (function): A custom replacer function for `JSON.stringify()`. Default: undefined.
 

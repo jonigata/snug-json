@@ -46,7 +46,10 @@ const TRUNCATED_ARRAY_MARKER = '__TRUNCATED_ARRAY__';
 const TRUNCATED_PARTIAL_ARRAY_MARKER = '__TRUNCATED_PARTIAL_ARRAY__';
 
 
-function snugJSON(obj: any, userOptions: TruncateOptions = {}): string {
+function snugJSON(obj: undefined, userOptions?: TruncateOptions): undefined;
+function snugJSON(obj: any, userOptions?: TruncateOptions): string;
+
+function snugJSON(obj: any, userOptions: TruncateOptions = {}): string | undefined {
   const options = { ...userOptions };
   options.maxLength ??= Infinity;
   options.maxStringLength ??= Infinity;
@@ -79,7 +82,8 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string {
   const stringify = (value: any) => JSON.stringify(value, customReplacer, space);
 
   // 後処理関数
-  const postProcess = (jsonString: string): string => {
+  const postProcess = (jsonString: string): string | undefined => {
+    if (jsonString === undefined) { return undefined; }
     return jsonString
       .replace(new RegExp(`"${TRUNCATED_OBJECT_MARKER}([^:]+):(0)"`, 'g'), '{"$1":?}')
       .replace(new RegExp(`"${TRUNCATED_OBJECT_MARKER}([^:]+):(\\d+)"`, 'g'), '{"$1":?,...+$2}')
@@ -88,10 +92,12 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string {
   };
 
   // stringifyとpost-processingを行い、長さをチェックする関数
-  const processAndCheck = (data: any): string | null => {
+  const processAndCheck = (data: any): string | null | undefined => {
     const oneline = postProcess(JSON.stringify(data, customReplacer));
+    if (oneline === undefined) { return undefined; }
     if (oneline.length <= oneLineLength) return oneline;
     const processed = postProcess(stringify(data));
+    if (processed === undefined) { return undefined; }
     return processed.length <= maxLength ? processed : null;
   };
   
@@ -194,7 +200,9 @@ function snugJSON(obj: any, userOptions: TruncateOptions = {}): string {
   }
 
   // 最後の手段として、強制的に切り詰める
-  return postProcess(stringify(obj)).slice(0, maxLength - 3) + '...';
+  const postProcessed = postProcess(stringify(obj));
+  if (postProcessed === undefined) { return postProcessed; }
+  return postProcessed.slice(0, maxLength - 3) + '...';
 }
 
 export { snugJSON }

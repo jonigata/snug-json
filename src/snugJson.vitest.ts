@@ -2,6 +2,36 @@ import { describe, it, expect } from 'vitest';
 import { snugJSON } from './snugJson';
 
 describe('smugJSON', () => {
+  it('JSON.stringify test', () => {
+    const result = JSON.stringify('');
+    expect(result).toBe('""');
+    const result2 = JSON.stringify(null);
+    expect(result2).toBe('null');
+    const result3 = JSON.stringify(undefined);
+    expect(result3).toBe(undefined);
+    const result4 = JSON.stringify(42);
+    expect(result4).toBe('42');
+  });
+  it('should return empty string for empty input', () => {
+    const result = snugJSON('');
+    expect(result).toBe('""');
+  });
+  it('should return number when input is number', () => {
+    const result = snugJSON(42);
+    expect(result).toBe('42');
+  });
+  it('should return string when input is string', () => {
+    const result = snugJSON('hello');
+    expect(result).toBe('"hello"');
+  });
+  it('should return null when input is null', () => {
+    const result = snugJSON(null);
+    expect(result).toBe('null');
+  });
+  it('should return undefined when input is undefined', () => {
+    const result = snugJSON(undefined);
+    expect(result).toBe(undefined);
+  });
   it('should not truncate short JSON', () => {
     const input = { a: 1, b: 2, c: 3 };
     const result = snugJSON(input);
